@@ -24,4 +24,15 @@ public class ClientService {
             return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
         }
     }
+
+    public ResponseEntity<Client> add(Client client){
+        Client clientRenvoye = clientRepository.save(client);
+        if(null != clientRenvoye) {
+            return new ResponseEntity<Client>(clientRenvoye, HttpStatus.CREATED);
+        }
+        else{
+            return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
